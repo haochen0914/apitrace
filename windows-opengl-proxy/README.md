@@ -5,8 +5,9 @@ A helper utility for installing and restoring a proxy `opengl32.dll` for system-
 ## Quick Start
 
 ### 1. Build or obtain the proxy OpenGL DLL
+Prebuilt proxy DLLs are already provided in this repository.
 
-Place your custom OpenGL proxy DLLs in the following structure:
+If you want to use your own build of apitrace (or another OpenGL proxy implementation), replace the DLLs in the following directories:
 
 ```text
 .
