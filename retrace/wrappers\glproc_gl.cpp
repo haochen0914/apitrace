@@ -51,11 +51,17 @@ void *
 _getPublicProcAddress(const char *procName)
 {
     if (!_libGlHandle) {
-        const char *szDll = "opengl32.dll";
-        
-        _libGlHandle = LoadLibraryA(szDll);
+        char szDll[MAX_PATH] = {0};
+        /* Prefer opengl32_orig.dll when system opengl32 was renamed (e.g. for trace DLL as opengl32.dll) */
+        if (GetSystemDirectoryA(szDll, MAX_PATH)) {
+            strcat(szDll, "\\opengl32_orig.dll");
+            _libGlHandle = LoadLibraryA(szDll);
+        }
         if (!_libGlHandle) {
-            os::log("apitrace: error: couldn't load %s\n", szDll);
+            _libGlHandle = LoadLibraryA("opengl32.dll");
+        }
+        if (!_libGlHandle) {
+            os::log("apitrace: error: couldn't load OpenGL DLL\n");
             return NULL;
         }
     }
