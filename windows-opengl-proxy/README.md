@@ -39,6 +39,14 @@ The script will:
 
 Launch the OpenGL application you want to trace or debug.
 
+The generated `.trace` file will be written to your Desktop by default.
+
+Example:
+
+```text
+C:\Users\<username>\Desktop\<application>.trace
+```
+
 ### 4. Restore the original system DLL
 
 Run:
@@ -49,7 +57,27 @@ restore_opengl32.bat
 
 The script will restore the original Windows OpenGL DLLs from the backups created during installation.
 
----
+### 5. Replay the trace
+
+Download the latest apitrace release from:
+
+https://apitrace.github.io/download/apitrace-latest-win64.7z
+
+Extract the package and run:
+
+```bat
+apitrace.exe replay <trace-file>
+```
+
+Example:
+
+```bat
+apitrace.exe replay C:\Users\<username>\Desktop\myapp.trace
+```
+
+For additional commands and advanced usage, please refer to:
+
+https://github.com/apitrace/apitrace/blob/master/docs/USAGE.markdown
 
 ## Scripts
 
