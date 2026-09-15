@@ -58,7 +58,8 @@ _getPublicProcAddress(const char *procName)
             return NULL;
         }
         
-        strcat(szDll, "\\opengl32.dll");
+        /* Load the real OpenGL when system opengl32.dll was renamed to opengl32_orig.dll */
+        strcat(szDll, "\\opengl32_orig.dll");
         
         _libGlHandle = LoadLibraryA(szDll);
         if (!_libGlHandle) {
